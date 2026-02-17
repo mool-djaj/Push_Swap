@@ -17,5 +17,4 @@ void free_stack(t_stack **sta)
     }
 
     *sta = NULL;
-
 }

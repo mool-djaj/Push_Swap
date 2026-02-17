@@ -1,10 +1,12 @@
 #ifndef PUSH_SWAP
  #define PUSH_SWAP
 
+#include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <limits.h>
+#include <stdio.h>
 
 typedef struct stack
 {
@@ -27,6 +29,8 @@ void add_stack_to(t_stack **stack, t_stack *new_nodde);
 int dublicate_num(t_stack *a, int nmb);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
+void	free_split(char **args);
+int	fill_stack(t_stack **sta, char *arg);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);
