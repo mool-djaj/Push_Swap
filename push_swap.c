@@ -1,29 +1,49 @@
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+static void	free_split(char **args)
 {
-	if (argc == 1)
-		return(0);
+	int	i;
 
-	int i;
-	t_stack *sta;
-	t_stack *new_sta;
-	long nmb;
+	if (!args)
+		return ;
 
-	i = 1;
-	sta = NULL;
-
-	while (argv[i])
+	i = 0;
+	while (args[i])
 	{
-		if (!ft_atol(argv[i], &nmb) || dublicate_num(sta, (int)nmb))
-			return (free_stack(&sta), write(2,"Error\n",6), 1);
-		new_sta = creat_stack(nmb);
-		if (!new_sta)
-			return(free_stack(&new_sta), 1);
-		add_stack_to(&sta, new_sta);
+		free(args[i]); 
 		i++;
 	}
+	free(args);
+}
 
-	free_stack(&sta);
-	return (0);
+int main(int argc, char **argv)
+{
+    t_stack *sta;
+    char    **tmp_args;
+    int     i;
+    int     j;
+    long    nmb;
+
+    if (argc < 2)
+        return (0);
+    sta = NULL;
+    i = 1;
+    while (argv[i])
+    {
+		tmp_args = ft_split(argv[i], ' ');
+        j = 0;
+        while (tmp_args[j])
+        {
+            if (!ft_atol(tmp_args[j], &nmb) || dublicate_num(sta, (int)nmb))
+                return (free_split(tmp_args) ,free_stack(&sta) , write(2, "Error\n", 6), 1);
+            // 3. Put them in the node
+            add_stack_to(&sta, creat_stack((int)nmb));
+            free(tmp_args[j]); // Free the string once it's in the stack
+            j++;
+        }
+        free(tmp_args); // Free the array of pointers
+        i++;
+    }
+    // ... logic for is_sorted and algorithm ...
+    return (0);
 }
