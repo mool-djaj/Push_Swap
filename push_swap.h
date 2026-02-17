@@ -31,6 +31,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 void	free_split(char **args);
 int	fill_stack(t_stack **sta, char *arg);
+void sort3(t_stack **a);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);

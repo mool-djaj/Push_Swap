@@ -36,7 +36,7 @@ static t_stack *find_max(t_stack *sta)
 	return (max_node);
 }
 
- t_stack sort3(t_stack **a)
+void sort3(t_stack **a)
 {
 	t_stack *max_node;
 
@@ -44,10 +44,10 @@ static t_stack *find_max(t_stack *sta)
 
 	if (*a == max_node)
 		ra(a);
+
 	else if ((*a)->next == max_node)
 		rra(a);
-	{
-		/* code */
-	}
-	
+
+	if ((*a)->value > (*a)->next->value)
+		sa(a);
 }
