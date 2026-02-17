@@ -1,26 +1,53 @@
 #include "push_swap.h"
-void det_index(t_stack *stack)
+
+static int is_sorted(t_stack *sta)
 {
-	t_stack *current;
-	t_stack *compare;
-	int		index;
+	if (!sta)
+		return (1);
 
-	current = stack;
-
-	while (current)
+	while (sta->next)
 	{
-		index = 0;
-		compare = stack;
-		while (compare)
-		{
-			if (current->value > compare->value)
-				index++;
-			compare = compare->next ;
-
-		}
-		current->index = index;
-		current = current->next;
-
+		if (sta->value > sta->next->value)
+			return (0);
+		sta = sta->next;
 	}
+	return (1);
+}
 
+static t_stack *find_max(t_stack *sta)
+{
+	t_stack *max_node;
+	int		max;
+
+	if (!sta)
+		return (NULL);
+	
+	max = INT_MIN;
+
+	while (sta)
+	{
+		if (sta->value > max)
+		{
+			max = sta->value;
+			max_node = sta;
+		}
+		sta = sta->next;
+	}
+	return (max_node);
+}
+
+ t_stack sort3(t_stack **a)
+{
+	t_stack *max_node;
+
+	max_node = find_max(*a);
+
+	if (*a == max_node)
+		ra(a);
+	else if ((*a)->next == max_node)
+		rra(a);
+	{
+		/* code */
+	}
+	
 }
