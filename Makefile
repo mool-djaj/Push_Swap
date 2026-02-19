@@ -8,7 +8,7 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 
 SRCS        = push_swap.c add_stack_to.c create_stack.c duplicate_num.c \
               free_stack.c ft_atol.c push.c rotate.c reverse_rotate.c swap.c \
-              parsing.c sort.c
+              parsing.c sort.c cost.c cost1.c push_to.c
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)

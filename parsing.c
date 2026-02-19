@@ -30,8 +30,11 @@ int	fill_stack(t_stack **sta, char *arg)
 	int		j;
 
 	tmp_args = ft_split(arg, ' ');
-	if (!tmp_args)
+	if (!tmp_args || !tmp_args[0]) 
+	{
+		free_split(tmp_args);
 		return (0);
+	}
 	j = 0;
 	while (tmp_args[j])
 	{
@@ -43,6 +46,6 @@ int	fill_stack(t_stack **sta, char *arg)
 		add_stack_to(sta, creat_stack((int)nmb)); //
 		j++;
 	}
-	free(tmp_args);
+	free_split(tmp_args);
 	return (1);
 }

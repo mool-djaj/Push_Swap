@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static int is_sorted(t_stack *sta)
+int is_sorted(t_stack *sta)
 {
 	if (!sta)
 		return (1);
@@ -14,7 +14,8 @@ static int is_sorted(t_stack *sta)
 	return (1);
 }
 
-static t_stack *find_max(t_stack *sta)
+// In sort.c
+t_stack *find_max(t_stack *sta)
 {
 	t_stack *max_node;
 	int		max;
@@ -22,7 +23,8 @@ static t_stack *find_max(t_stack *sta)
 	if (!sta)
 		return (NULL);
 	
-	max = INT_MIN;
+	max = sta->value;     // FIX: Start with the first node's value
+	max_node = sta;       // FIX: Default the node to the first node
 
 	while (sta)
 	{
@@ -34,6 +36,29 @@ static t_stack *find_max(t_stack *sta)
 		sta = sta->next;
 	}
 	return (max_node);
+}
+
+// DO THE EXACT SAME THING FOR find_min!
+t_stack *find_min(t_stack *sta)
+{
+    t_stack *min_node;
+    int     min;
+
+    if (!sta) return (NULL);
+    
+    min = sta->value;     // FIX: Start with first node
+    min_node = sta;       // FIX: Default to first node
+    
+    while (sta)
+    {
+        if (sta->value < min)
+        {
+            min = sta->value;
+            min_node = sta;
+        }
+        sta = sta->next;
+    }
+    return (min_node);
 }
 
 void sort3(t_stack **a)
