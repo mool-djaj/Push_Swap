@@ -59,4 +59,3 @@ void big_sort(t_stack **a, t_stack **b)
     // 4. Final alignment: Smallest number to the top
     final_check(a);
 }
-

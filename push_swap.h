@@ -50,6 +50,7 @@ int	ft_abs(int n);
 void set_current_pos(t_stack *sta);
 void push_back(t_stack **a, t_stack **b);
 void final_check(t_stack **a);
+void rotate_both(t_stack **a, t_stack **b, t_stack *cheap);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);

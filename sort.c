@@ -44,8 +44,8 @@ t_stack *find_min(t_stack *sta)
     t_stack *min_node;
     int     min;
 
-    if (!sta) return (NULL);
-    
+    if (!sta) 
+		return (NULL);
     min = sta->value;     // FIX: Start with first node
     min_node = sta;       // FIX: Default to first node
     

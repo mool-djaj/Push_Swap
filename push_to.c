@@ -56,23 +56,28 @@ void set_target_a(t_stack *a, t_stack *b)
     }
 }
 
-void move_to_b(t_stack **a, t_stack **b)
+void rotate_both(t_stack **a, t_stack **b, t_stack *cheap)
 {
-    t_stack *cheap;
-
-    cheap = get_cheapest(*a);
-        while (cheap->val_a > 0 && cheap->val_b > 0)
+    while (cheap->val_a > 0 && cheap->val_b > 0)
     {
-        rr(a, b); //
+        rr(a, b);
         cheap->val_a--;
         cheap->val_b--;
     }
     while (cheap->val_a < 0 && cheap->val_b < 0)
     {
-        rrr(a, b); //
+        rrr(a, b);
         cheap->val_a++;
         cheap->val_b++;
     }
+}
+
+void move_to_b(t_stack **a, t_stack **b)
+{
+    t_stack *cheap;
+
+    cheap = get_cheapest(*a);
+	rotate_both(a, b, cheap);
     while (cheap->val_a > 0)
     {
         ra(a); //
@@ -119,20 +124,3 @@ void push_back(t_stack **a, t_stack **b)
         pa(a, b); //
     }
 }
-
-// In push_to.c
-void final_check(t_stack **a)
-{
-    set_current_pos(*a); // FIX: ADD THIS LINE TO REFRESH POSITIONS!
-
-    int min_pos = find_min(*a)->pos;
-    int size = stack_len(*a);
-
-    if (min_pos <= size / 2)
-        while ((*a)->value != find_min(*a)->value)
-            ra(a); 
-    else
-        while ((*a)->value != find_min(*a)->value)
-            rra(a); 
-}
-

@@ -35,18 +35,27 @@ void cheapest(t_stack *a)
     best_node = NULL;
     while (a)
     {
-        // 1. Both positive (rr optimization: cost is the HIGHEST of the two)
+        // 1. Both positive: cost is the HIGHEST of the two
         if (a->val_a > 0 && a->val_b > 0)
-            current_cost = (a->val_a > a->val_b) ? a->val_a : a->val_b;
-            
-        // 2. Both negative (rrr optimization: cost is the HIGHEST absolute value)
+        {
+            if (a->val_a > a->val_b)
+                current_cost = a->val_a;
+            else
+                current_cost = a->val_b;
+        }
+        // 2. Both negative: cost is the HIGHEST absolute value
         else if (a->val_a < 0 && a->val_b < 0)
-            current_cost = (ft_abs(a->val_a) > ft_abs(a->val_b)) ? ft_abs(a->val_a) : ft_abs(a->val_b);
-            
-        // 3. Different directions (No optimization: cost is the sum)
+        {
+            if (ft_abs(a->val_a) > ft_abs(a->val_b))
+                current_cost = ft_abs(a->val_a);
+            else
+                current_cost = ft_abs(a->val_b);
+        }
+        // 3. Different directions: cost is the sum
         else
+        {
             current_cost = ft_abs(a->val_a) + ft_abs(a->val_b);
-
+        }
         // Compare the real current_cost to best_val
         if (current_cost < best_val)
         {
@@ -56,9 +65,11 @@ void cheapest(t_stack *a)
         a->cheap = 0;
         a = a->next;
     }
+    // Mark the final winner
     if (best_node)
         best_node->cheap = 1;
 }
+
 
 t_stack *get_cheapest(t_stack *stack)
 {
@@ -69,4 +80,20 @@ t_stack *get_cheapest(t_stack *stack)
         stack = stack->next;
     }
     return (NULL);
+}
+
+// In push_to.c
+void final_check(t_stack **a)
+{
+    set_current_pos(*a); // FIX: ADD THIS LINE TO REFRESH POSITIONS!
+
+    int min_pos = find_min(*a)->pos;
+    int size = stack_len(*a);
+
+    if (min_pos <= size / 2)
+        while ((*a)->value != find_min(*a)->value)
+            ra(a); 
+    else
+        while ((*a)->value != find_min(*a)->value)
+            rra(a); 
 }
