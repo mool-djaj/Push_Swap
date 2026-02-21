@@ -35,7 +35,6 @@ void cheapest(t_stack *a)
     best_node = NULL;
     while (a)
     {
-        // 1. Both positive: cost is the HIGHEST of the two
         if (a->val_a > 0 && a->val_b > 0)
         {
             if (a->val_a > a->val_b)
@@ -43,7 +42,6 @@ void cheapest(t_stack *a)
             else
                 current_cost = a->val_b;
         }
-        // 2. Both negative: cost is the HIGHEST absolute value
         else if (a->val_a < 0 && a->val_b < 0)
         {
             if (ft_abs(a->val_a) > ft_abs(a->val_b))
@@ -51,12 +49,8 @@ void cheapest(t_stack *a)
             else
                 current_cost = ft_abs(a->val_b);
         }
-        // 3. Different directions: cost is the sum
         else
-        {
             current_cost = ft_abs(a->val_a) + ft_abs(a->val_b);
-        }
-        // Compare the real current_cost to best_val
         if (current_cost < best_val)
         {
             best_val = current_cost;
@@ -65,7 +59,6 @@ void cheapest(t_stack *a)
         a->cheap = 0;
         a = a->next;
     }
-    // Mark the final winner
     if (best_node)
         best_node->cheap = 1;
 }

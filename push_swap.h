@@ -27,7 +27,7 @@ t_stack	*get_stack_last(t_stack *stack);
 void free_stack(t_stack **sta);
 int	ft_atol(const char *str, long *nptr);
 void add_stack_to(t_stack **stack, t_stack *new_nodde);
-int dublicate_num(t_stack *a, int nmb);
+int duplicate_num(t_stack *a, int nmb);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
 void	free_split(char **args);

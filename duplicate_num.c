@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int dublicate_num(t_stack *a, int nmb)
+int duplicate_num(t_stack *a, int nmb)
 {
     if (!a)
 		return (0);

@@ -10,7 +10,6 @@ void set_target_b(t_stack *a, t_stack *b)
 	{
 		best_match = LONG_MIN;
 		current_b = b;
-
 		while (current_b)
 		{
 			if (current_b->value < a->value && current_b->value > best_match)

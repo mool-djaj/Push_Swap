@@ -49,7 +49,6 @@ void big_sort(t_stack **a, t_stack **b)
         cheapest(*a);
         move_to_b(a, b);
     }
-
     // 2. Sort the final 3 numbers
     sort3(a);
 

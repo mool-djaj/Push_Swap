@@ -38,7 +38,7 @@ int	fill_stack(t_stack **sta, char *arg)
 	j = 0;
 	while (tmp_args[j])
 	{
-		if (!ft_atol(tmp_args[j], &nmb) || dublicate_num(*sta, (int)nmb))
+		if (!ft_atol(tmp_args[j], &nmb) || duplicate_num(*sta, (int)nmb))
 		{
 			free_split(tmp_args);
 			return (0);
