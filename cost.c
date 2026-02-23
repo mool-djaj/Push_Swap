@@ -2,8 +2,8 @@
 
 void set_price(t_stack*a, t_stack *b)
 {
-	int size_a;
-	int size_b;
+	int	size_a;
+	int	size_b;
 
 	size_a = stack_len(a);
 	size_b = stack_len(b);
@@ -12,7 +12,7 @@ void set_price(t_stack*a, t_stack *b)
 		if (a->pos <= size_a / 2)
 			a->val_a = a->pos;
 		else
-			a->val_a = (size_a - a->pos) * (-1) ;
+			a->val_a = (size_a - a->pos) * (-1);
 		
 		if (a->target_pos <= size_b / 2)
 			a->val_b = a->target_pos;
@@ -22,12 +22,11 @@ void set_price(t_stack*a, t_stack *b)
 	}
 }
 
-// In cost.c
 void cheapest(t_stack *a)
 {
-    long    best_val;
-    t_stack *best_node;
-    long    current_cost;
+	t_stack	*best_node;
+    long	best_val;
+    long	current_cost;
 
     if (!a)
         return ;
@@ -66,27 +65,28 @@ void cheapest(t_stack *a)
 
 t_stack *get_cheapest(t_stack *stack)
 {
-    while (stack)
-    {
-        if (stack->cheap == 1)
-            return (stack);
-        stack = stack->next;
-    }
-    return (NULL);
+	while (stack)
+	{
+		if (stack->cheap == 1)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
 }
 
-// In push_to.c
 void final_check(t_stack **a)
 {
-    set_current_pos(*a); // FIX: ADD THIS LINE TO REFRESH POSITIONS!
+	int	min_pos;
+	int size;
 
-    int min_pos = find_min(*a)->pos;
-    int size = stack_len(*a);
+	set_current_pos(*a);
+	min_pos = find_min(*a)->pos;
+	size = stack_len(*a);
 
-    if (min_pos <= size / 2)
-        while ((*a)->value != find_min(*a)->value)
-            ra(a); 
-    else
-        while ((*a)->value != find_min(*a)->value)
-            rra(a); 
+	if (min_pos <= size / 2)
+		while ((*a)->value != find_min(*a)->value)
+			ra(a);
+	else
+		while ((*a)->value != find_min(*a)->value)
+ 			rra(a);
 }

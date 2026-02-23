@@ -11,7 +11,8 @@ t_stack	*get_stack_last(t_stack *stack)
 
 void add_stack_to(t_stack **stack, t_stack *new_sta)
 {
-	t_stack *last;
+	t_stack	*last;
+
 	if (!new_sta)
 		return ;
 	if (!*stack)

@@ -7,16 +7,16 @@ static void	swap(t_stack **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	first = *stack; //Stores the current head node in first
-	second = first->next; //Stores the second node in second
-	first->next = second->next;//skeep the second node to the third 
+	first = *stack;/*Stores the current head node in first*/
+	second = first->next;/*Stores the second node in second*/
+	first->next = second->next;/*skeep the second node to the third*/
 	if (second->next)
-		second->next->prev = first;// the third node its preveuis become the second
+		second->next->prev = first;/*the third node its preveuis become the second*/
 	second->prev = NULL;
 	second->next = first;
 	first->prev = second;
 	*stack = second;
-	//finally we swap 2 nodes had zft.
+	/*finally we swap 2 nodes had zft.*/
 }
 
 void	sa(t_stack **stack_a)

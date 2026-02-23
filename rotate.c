@@ -11,11 +11,10 @@ static void	rotate(t_stack **stack)
 	first = *stack;
 	last = get_stack_last(*stack);
 
-	// 1. Second node becomes the new top
+		/*Second node becomes the new top*/
 	*stack = first->next;
 	(*stack)->prev = NULL;
-
-	// 2. Old first node moves to the bottom
+		/*2. Old first node moves to the bottom*/
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;

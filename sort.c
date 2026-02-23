@@ -14,7 +14,6 @@ int is_sorted(t_stack *sta)
 	return (1);
 }
 
-// In sort.c
 t_stack *find_max(t_stack *sta)
 {
 	t_stack *max_node;
@@ -23,8 +22,8 @@ t_stack *find_max(t_stack *sta)
 	if (!sta)
 		return (NULL);
 	
-	max = sta->value;     // FIX: Start with the first node's value
-	max_node = sta;       // FIX: Default the node to the first node
+	max = sta->value;
+	max_node = sta;
 
 	while (sta)
 	{
@@ -38,30 +37,29 @@ t_stack *find_max(t_stack *sta)
 	return (max_node);
 }
 
-// DO THE EXACT SAME THING FOR find_min!
-t_stack *find_min(t_stack *sta)
+t_stack	*find_min(t_stack *sta)
 {
-    t_stack *min_node;
-    int     min;
+	t_stack	*min_node;
+	int	min;
 
-    if (!sta) 
+	if (!sta)
 		return (NULL);
-    min = sta->value;     // FIX: Start with first node
-    min_node = sta;       // FIX: Default to first node
-    
-    while (sta)
-    {
-        if (sta->value < min)
-        {
-            min = sta->value;
-            min_node = sta;
-        }
-        sta = sta->next;
-    }
-    return (min_node);
+	min = sta->value;
+	min_node = sta;
+
+	while (sta)
+	{
+		if (sta->value < min)
+		{
+			min = sta->value;
+			min_node = sta;
+		}
+		sta = sta->next;
+	}
+	return (min_node);
 }
 
-void sort3(t_stack **a)
+void	sort3(t_stack **a)
 {
 	t_stack *max_node;
 

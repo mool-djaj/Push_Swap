@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <limits.h>
-#include <stdio.h>
 
 typedef struct stack
 {
@@ -51,6 +50,7 @@ void set_current_pos(t_stack *sta);
 void push_back(t_stack **a, t_stack **b);
 void final_check(t_stack **a);
 void rotate_both(t_stack **a, t_stack **b, t_stack *cheap);
+t_stack *get_target_node_a(t_stack *a, t_stack *b_node);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);

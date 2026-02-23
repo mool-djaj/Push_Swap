@@ -2,7 +2,7 @@
 
 int duplicate_num(t_stack *a, int nmb)
 {
-    if (!a)
+	if (!a)
 		return (0);
 	while (a)
 	{

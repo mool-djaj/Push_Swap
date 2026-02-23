@@ -2,7 +2,7 @@
 
 void set_current_pos(t_stack *sta)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (sta)
@@ -22,7 +22,7 @@ int	ft_abs(int n)
 
 int stack_len(t_stack *sta)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (sta)
@@ -35,26 +35,48 @@ int stack_len(t_stack *sta)
 
 void big_sort(t_stack **a, t_stack **b)
 {
-    // 1. Move everything to B until only 3 are left in A
-    if (stack_len(*a) > 3)
-        pb(b, a);
-    if (stack_len(*a) > 3)
-        pb(b, a);
-    while (stack_len(*a) > 3)
-    {
-        set_current_pos(*a);
-        set_current_pos(*b);
-        set_target_b(*a, *b);
-        set_price(*a, *b);
-        cheapest(*a);
-        move_to_b(a, b);
-    }
-    // 2. Sort the final 3 numbers
-    sort3(a);
+	/*1. Move everything to B until only 3 are left in A*/
+	if (stack_len(*a) > 3)
+		pb(b, a);
+	if (stack_len(*a) > 3)
+		pb(b, a);
+	while (stack_len(*a) > 3)
+	{
+		set_current_pos(*a);
+		set_current_pos(*b);
+		set_target_b(*a, *b);
+		set_price(*a, *b);
+		cheapest(*a);
+		move_to_b(a, b);
+	}
+	/*2. Sort the final 3 numbers*/
+	sort3(a);
+	/*3. Push everything back from B to A in order*/
+	push_back(a, b);
+	/*4. Final alignment: Smallest number to the top*/
+	final_check(a);
+}
 
-    // 3. Push everything back from B to A in order
-    push_back(a, b);
+t_stack *get_target_node_a(t_stack *a, t_stack *b_node)
+{
+	t_stack	*current_a;
+	t_stack	*target_node;
+	long	best_match;
 
-    // 4. Final alignment: Smallest number to the top
-    final_check(a);
+	current_a = a;
+	target_node = NULL;
+	best_match = LONG_MAX;
+
+	while (current_a)
+	{
+		if (current_a->value > b_node->value && current_a->value < best_match)
+		{
+			best_match = current_a->value;
+			target_node = current_a;
+		}
+		current_a = current_a->next;
+	}
+	if (best_match == LONG_MAX)
+		return (find_min(a));/*Wrap-around*/
+	return (target_node);
 }

@@ -1,10 +1,3 @@
-      //parsing
-//join join all arguments in single sting
-//split all arguments
-//atol read numbers
-// put them in the node
-// duplication / is sorted 
-// stuck created 
 #include "push_swap.h"
 
 void	free_split(char **args)
@@ -17,7 +10,7 @@ void	free_split(char **args)
 	i = 0;
 	while (args[i])
 	{
-		free(args[i]); 
+		free(args[i]);
 		i++;
 	}
 	free(args);
@@ -43,7 +36,7 @@ int	fill_stack(t_stack **sta, char *arg)
 			free_split(tmp_args);
 			return (0);
 		}
-		add_stack_to(sta, creat_stack((int)nmb)); //
+		add_stack_to(sta, creat_stack((int)nmb));
 		j++;
 	}
 	free_split(tmp_args);
