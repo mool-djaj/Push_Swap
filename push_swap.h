@@ -2,6 +2,7 @@
  #define PUSH_SWAP
 
 #include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -51,6 +52,11 @@ void push_back(t_stack **a, t_stack **b);
 void final_check(t_stack **a);
 void rotate_both(t_stack **a, t_stack **b, t_stack *cheap);
 t_stack *get_target_node_a(t_stack *a, t_stack *b_node);
+
+void	swap(t_stack **stack);
+void	rotate(t_stack **stack);
+void	reverse_rotate(t_stack **stack);
+void	push(t_stack **dest, t_stack **src);
 
 void	sa(t_stack **stack_a);
 void	sb(t_stack **stack_b);

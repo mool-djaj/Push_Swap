@@ -110,7 +110,6 @@ void	push_back(t_stack **a, t_stack **b)
 		target_node = get_target_node_a(*a, *b);
 		set_current_pos(*a);
 		size_a = stack_len(*a);
-
 		/*Check if the target is in the top half or bottom half*/
 		if (target_node->pos <= size_a / 2)
 		{
