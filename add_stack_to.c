@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_stack_to.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:02:43 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/25 23:05:08 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*get_stack_last(t_stack *stack)
@@ -9,7 +21,7 @@ t_stack	*get_stack_last(t_stack *stack)
 	return (stack);
 }
 
-void add_stack_to(t_stack **stack, t_stack *new_sta)
+void	add_stack_to(t_stack **stack, t_stack *new_sta)
 {
 	t_stack	*last;
 
@@ -20,7 +32,6 @@ void add_stack_to(t_stack **stack, t_stack *new_sta)
 		*stack = new_sta;
 		return ;
 	}
-
 	last = get_stack_last(*stack);
 	last->next = new_sta;
 	new_sta->prev = last;

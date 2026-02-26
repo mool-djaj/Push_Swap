@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost1.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:03:10 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/26 00:23:36 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void set_current_pos(t_stack *sta)
+void	set_current_pos(t_stack *sta)
 {
 	int	i;
 
@@ -20,7 +32,7 @@ int	ft_abs(int n)
 	return (n);
 }
 
-int stack_len(t_stack *sta)
+int	stack_len(t_stack *sta)
 {
 	int	i;
 
@@ -33,9 +45,8 @@ int stack_len(t_stack *sta)
 	return (i);
 }
 
-void big_sort(t_stack **a, t_stack **b)
+void	big_sort(t_stack **a, t_stack **b)
 {
-	/*1. Move everything to B until only 3 are left in A*/
 	if (stack_len(*a) > 3)
 		pb(b, a);
 	if (stack_len(*a) > 3)
@@ -49,15 +60,12 @@ void big_sort(t_stack **a, t_stack **b)
 		cheapest(*a);
 		move_to_b(a, b);
 	}
-	/*2. Sort the final 3 numbers*/
 	sort3(a);
-	/*3. Push everything back from B to A in order*/
 	push_back(a, b);
-	/*4. Final alignment: Smallest number to the top*/
 	final_check(a);
 }
 
-t_stack *get_target_node_a(t_stack *a, t_stack *b_node)
+t_stack	*get_target_node_a(t_stack *a, t_stack *b_node)
 {
 	t_stack	*current_a;
 	t_stack	*target_node;
@@ -66,7 +74,6 @@ t_stack *get_target_node_a(t_stack *a, t_stack *b_node)
 	current_a = a;
 	target_node = NULL;
 	best_match = LONG_MAX;
-
 	while (current_a)
 	{
 		if (current_a->value > b_node->value && current_a->value < best_match)
@@ -77,6 +84,6 @@ t_stack *get_target_node_a(t_stack *a, t_stack *b_node)
 		current_a = current_a->next;
 	}
 	if (best_match == LONG_MAX)
-		return (find_min(a));/*Wrap-around*/
+		return (find_min(a));
 	return (target_node);
 }

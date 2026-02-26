@@ -8,7 +8,7 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS		= push_swap.c add_stack_to.c create_stack.c duplicate_num.c \
 				free_stack.c ft_atol.c push.c rotate.c reverse_rotate.c swap.c \
-				parsing.c sort.c cost.c cost1.c push_to.c optimize.c
+				parsing.c sort.c cost.c cost1.c push_to.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -18,8 +18,8 @@ CHECKER_NAME = checker
 CHECKER_SRCS = checker.c add_stack_to.c create_stack.c duplicate_num.c \
                free_stack.c ft_atol.c push.c rotate.c reverse_rotate.c \
                swap.c parsing.c sort.c \
-               get_next_line/get_next_line.c \
-               get_next_line/get_next_line_utils.c
+               get_next_line.c \
+               get_next_line_utils.c
 
 CHECKER_OBJS = $(CHECKER_SRCS:.c=.o)
 
@@ -32,7 +32,7 @@ $(NAME): $(LIBFT) $(OBJS)
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-%.o: %.c push_swap.h
+%.o: %.c push_swap.h checker.h
 	$(CC) $(CFLAGS) -I $(LIBFT_DIR) -c $< -o $@
 
 bonus: $(CHECKER_NAME)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:04:03 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/26 00:36:58 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_stack **stack)
@@ -7,16 +19,15 @@ void	swap(t_stack **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	first = *stack;/*Stores the current head node in first*/
-	second = first->next;/*Stores the second node in second*/
-	first->next = second->next;/*skeep the second node to the third*/
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
 	if (second->next)
-		second->next->prev = first;/*the third node its preveuis become the second*/
+		second->next->prev = first;
 	second->prev = NULL;
 	second->next = first;
 	first->prev = second;
 	*stack = second;
-	/*finally we swap 2 nodes had zft.*/
 }
 
 void	sa(t_stack **stack_a)

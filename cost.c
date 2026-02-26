@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:03:06 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/26 00:21:27 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void set_price(t_stack*a, t_stack *b)
+void	set_price(t_stack*a, t_stack *b)
 {
 	int	size_a;
 	int	size_b;
@@ -13,57 +25,57 @@ void set_price(t_stack*a, t_stack *b)
 			a->val_a = a->pos;
 		else
 			a->val_a = (size_a - a->pos) * (-1);
-		
 		if (a->target_pos <= size_b / 2)
 			a->val_b = a->target_pos;
 		else
-			a->val_b = (size_b - a->target_pos) * (-1) ;
-		a = a->next;
+			a->val_b = (size_b - a->target_pos) * (-1);
+		a = a->next ;
 	}
 }
 
-void cheapest(t_stack *a)
+static long	get_cost(long val_a, long val_b)
 {
-	t_stack	*best_node;
-    long	best_val;
-    long	current_cost;
+	long	abs_a;
+	long	abs_b;
 
-    if (!a)
-        return ;
-    best_val = LONG_MAX;
-    best_node = NULL;
-    while (a)
-    {
-        if (a->val_a > 0 && a->val_b > 0)
-        {
-            if (a->val_a > a->val_b)
-                current_cost = a->val_a;
-            else
-                current_cost = a->val_b;
-        }
-        else if (a->val_a < 0 && a->val_b < 0)
-        {
-            if (ft_abs(a->val_a) > ft_abs(a->val_b))
-                current_cost = ft_abs(a->val_a);
-            else
-                current_cost = ft_abs(a->val_b);
-        }
-        else
-            current_cost = ft_abs(a->val_a) + ft_abs(a->val_b);
-        if (current_cost < best_val)
-        {
-            best_val = current_cost;
-            best_node = a;
-        }
-        a->cheap = 0;
-        a = a->next;
-    }
-    if (best_node)
-        best_node->cheap = 1;
+	abs_a = ft_abs(val_a);
+	abs_b = ft_abs(val_b);
+	if ((val_a > 0 && val_b > 0) || (val_a < 0 && val_b < 0))
+	{
+		if (abs_a > abs_b)
+			return (abs_a);
+		return (abs_b);
+	}
+	return (abs_a + abs_b);
 }
 
+void	cheapest(t_stack *a)
+{
+	t_stack	*best_node;
+	long	best_val;
+	long	cost;
+	t_stack	*tmp;
 
-t_stack *get_cheapest(t_stack *stack)
+	if (!a)
+		return ;
+	best_val = LONG_MAX;
+	tmp = a;
+	while (tmp)
+	{
+		tmp->cheap = 0;
+		cost = get_cost(tmp->val_a, tmp->val_b);
+		if (cost < best_val)
+		{
+			best_val = cost;
+			best_node = tmp;
+		}
+		tmp = tmp->next;
+	}
+	if (best_node)
+		best_node->cheap = 1;
+}
+
+t_stack	*get_cheapest(t_stack *stack)
 {
 	while (stack)
 	{
@@ -74,19 +86,18 @@ t_stack *get_cheapest(t_stack *stack)
 	return (NULL);
 }
 
-void final_check(t_stack **a)
+void	final_check(t_stack **a)
 {
 	int	min_pos;
-	int size;
+	int	size;
 
 	set_current_pos(*a);
 	min_pos = find_min(*a)->pos;
 	size = stack_len(*a);
-
 	if (min_pos <= size / 2)
 		while ((*a)->value != find_min(*a)->value)
 			ra(a);
 	else
 		while ((*a)->value != find_min(*a)->value)
- 			rra(a);
+			rra(a);
 }

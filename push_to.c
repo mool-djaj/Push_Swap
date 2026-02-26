@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_to.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:03:44 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/26 00:33:05 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	set_target_b(t_stack *a, t_stack *b)
@@ -35,7 +47,7 @@ void	set_target_a(t_stack *a, t_stack *b)
 
 	while (b)
 	{
-		best_match = LONG_MAX;/*Looking for the smallest number that is still bigger than B*/
+		best_match = LONG_MAX;
 		curr_a = a;
 		while (curr_a)
 		{
@@ -46,13 +58,12 @@ void	set_target_a(t_stack *a, t_stack *b)
 			}
 			curr_a = curr_a->next;
 		}
-		/*If no larger number is found, B is the new largest; target the SMALLEST in A*/
 		if (best_match == LONG_MAX)
-			b->target_pos = find_min(a)->pos; 
+			b->target_pos = find_min(a)->pos;
 		else
 			b->target_pos = target_node->pos;
 		b = b->next;
-    }
+	}
 }
 
 void	rotate_both(t_stack **a, t_stack **b, t_stack *cheap)
@@ -73,7 +84,7 @@ void	rotate_both(t_stack **a, t_stack **b, t_stack *cheap)
 
 void	move_to_b(t_stack **a, t_stack **b)
 {
-	t_stack *cheap;
+	t_stack	*cheap;
 
 	cheap = get_cheapest(*a);
 	rotate_both(a, b, cheap);
@@ -110,18 +121,15 @@ void	push_back(t_stack **a, t_stack **b)
 		target_node = get_target_node_a(*a, *b);
 		set_current_pos(*a);
 		size_a = stack_len(*a);
-		/*Check if the target is in the top half or bottom half*/
 		if (target_node->pos <= size_a / 2)
 		{
-			/*Spin UP until the top node IS the target node*/
 			while (*a != target_node)
-			ra(a);
+				ra(a);
 		}
 		else
 		{
-			/*Spin DOWN until the top node IS the target node*/
 			while (*a != target_node)
-			rra(a);
+				rra(a);
 		}
 		pa(a, b);
 	}

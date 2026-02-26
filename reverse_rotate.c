@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:03:51 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/26 00:34:20 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	reverse_rotate(t_stack **stack)
@@ -8,12 +20,10 @@ void	reverse_rotate(t_stack **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-
 	first = *stack;
 	last = get_stack_last(*stack);
 	before_last = last->prev;
 	before_last->next = NULL;
-
 	last->prev = NULL;
 	last->next = first;
 	first->prev = last;

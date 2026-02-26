@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/25 23:03:55 by akaarich          #+#    #+#             */
+/*   Updated: 2026/02/26 00:35:11 by akaarich         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rotate(t_stack **stack)
@@ -7,14 +19,10 @@ void	rotate(t_stack **stack)
 
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
-	
 	first = *stack;
 	last = get_stack_last(*stack);
-
-		/*Second node becomes the new top*/
 	*stack = first->next;
 	(*stack)->prev = NULL;
-		/*2. Old first node moves to the bottom*/
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
