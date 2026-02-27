@@ -6,7 +6,7 @@
 **Push_Swap** is a highly algorithmic project from the 42 curriculum. The primary goal is to sort data on a stack, with a limited set of instructions, using the absolute lowest possible number of actions. 
 
 We start with two stacks: 
-* **Stack A**: Contains a random list of un-duplicated integers (positive and/or negative) provided as arguments.
+* **Stack A**: Contains a random list of un-duplicated integers (positive and negative) provided as arguments.
 * **Stack B**: Starts empty.
 
 The objective is to sort the numbers in Stack A in ascending order using only the following specific operations:
@@ -49,20 +49,41 @@ Instead of sorting blindly or chunking numbers into arbitrary groups, the algori
 
 ---
 
-## Instructions
+## Compilation
 
-### Compilation
-The project includes a comprehensive `Makefile` to compile the executables using standard 42 flags (`-Wall -Wextra -Werror`) and link the `libft` library.
+This project uses a `Makefile` to compile the source code. The compiler used is `cc`, compiling with the strict `-Wall -Wextra -Werror` flags.
 
-* `make`: Compiles the `libft` library and the main `push_swap` program.
-* `make bonus`: Compiles the custom `checker` program used to verify if instructions actually sort the stack.
-* `make clean`: Removes all compiled `.o` object files (including inside the `libft` directory).
-* `make fclean`: Runs `clean` and also removes the final executables (`push_swap`, `checker`) and the `libft.a` archive.
-* `make re`: Runs `fclean` followed by `make`, completely recompiling the project from scratch.
-
-### Execution & Usage
-
-**1. Running Push_Swap:**
-Run the program by providing a list of integers as arguments. It will output the exact sequence of instructions required to sort the stack.
+To compile the mandatory part of the project:
 ```bash
-./push_swap 4 67 3 87 23
+make
+```
+
+To compile the bonus part (the checker program):
+```bash
+make bonus
+```
+
+**Additional Make Rules:**
+* `make clean`: Removes all `.o` (object) files.
+* `make fclean`: Removes object files and the executables (`push_swap` and `checker`).
+* `make re`: Fully recompiles the project by running `fclean` followed by `all`.
+
+## Resources & References
+
+Here are the classic references and tools that were instrumental in understanding and completing this project:
+
+* **[Push_Swap — The least amount of moves with two stacks](https://medium.com/@ali.yigit/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a):** The foundational article by A. Yigit explaining the "Turk Algorithm" approach, which serves as the core logic for pushing elements back and forth efficiently.
+* **[Push_Swap Visualizer](https://github.com/o-reo/push_swap_visualizer):** An essential graphical tool used to visualize the stack movements and debug infinite loops or inefficient sorting paths.
+* **[Push_Swap Tester](https://github.com/gemartin99/Push-Swap-Tester):** A bash script used to run automated stress tests to ensure the algorithm consistently stays under the maximum move limits for 100 and 500 numbers.
+
+---
+
+## AI Usage Disclosure
+
+Artificial Intelligence (specifically Google's Gemini) was utilized during the development of this project as a tutor and pair-programming assistant. 
+
+Here is a breakdown of exactly how AI was used:
+
+* **Algorithm Optimization (Math & Logic):** AI was used to help upgrade the standard Turk Algorithm to include a **4-way cost optimization**. AI provided the mathematical logic to test all four rotation combinations (`ra`+`rb`, `ra`+`rrb`, `rra`+`rb`, `rra`+`rrb`) simultaneously. This allowed the algorithm to find the absolute cheapest path by maximizing shared double-rotations (`rr` and `rrr`), dropping the average move count significantly.
+* **Code Explanation & Mentorship:** Instead of writing the core logic from scratch, AI was used to explain abstract concepts. It provided step-by-step breakdowns of how the "shopping phase" (`set_price`) and "checkout phase" (`cheapest`) work together, and clarified the difference between an element's physical position (`pos`) versus its movement instructions (`val_a` / `val_b`).
+* **Documentation & Formatting:** AI was used to draft, specifically formatting the Markdown for the compilation instructions and algorithm breakdown.
