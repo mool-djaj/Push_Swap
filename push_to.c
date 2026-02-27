@@ -6,7 +6,7 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:03:44 by akaarich          #+#    #+#             */
-/*   Updated: 2026/02/26 00:33:05 by akaarich         ###   ########.fr       */
+/*   Updated: 2026/02/27 01:06:27 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,24 +113,28 @@ void	move_to_b(t_stack **a, t_stack **b)
 
 void	push_back(t_stack **a, t_stack **b)
 {
-	t_stack	*target_node;
-	int		size_a;
+	t_stack	*trg;
 
+	if (!*b)
+		return ;
+	set_current_pos(*b);
+	trg = find_max(*b);
+	if (trg->pos <= stack_len(*b) / 2)
+		while (*b != trg)
+			rb(b);
+	else
+		while (*b != trg)
+			rrb(b);
 	while (*b)
 	{
-		target_node = get_target_node_a(*a, *b);
+		trg = get_target_node_a(*a, *b);
 		set_current_pos(*a);
-		size_a = stack_len(*a);
-		if (target_node->pos <= size_a / 2)
-		{
-			while (*a != target_node)
+		if (trg->pos <= stack_len(*a) / 2)
+			while (*a != trg)
 				ra(a);
-		}
 		else
-		{
-			while (*a != target_node)
+			while (*a != trg)
 				rra(a);
-		}
 		pa(a, b);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:03:10 by akaarich          #+#    #+#             */
-/*   Updated: 2026/02/26 00:23:36 by akaarich         ###   ########.fr       */
+/*   Updated: 2026/02/26 23:09:34 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	big_sort(t_stack **a, t_stack **b)
 		pb(b, a);
 	if (stack_len(*a) > 3)
 		pb(b, a);
+	if (*b && (*b)->next && (*b)->value < (*b)->next->value)
+		sb(b);
 	while (stack_len(*a) > 3)
 	{
 		set_current_pos(*a);

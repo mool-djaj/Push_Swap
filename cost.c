@@ -6,32 +6,11 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:03:06 by akaarich          #+#    #+#             */
-/*   Updated: 2026/02/26 00:21:27 by akaarich         ###   ########.fr       */
+/*   Updated: 2026/02/27 01:16:12 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	set_price(t_stack*a, t_stack *b)
-{
-	int	size_a;
-	int	size_b;
-
-	size_a = stack_len(a);
-	size_b = stack_len(b);
-	while (a)
-	{
-		if (a->pos <= size_a / 2)
-			a->val_a = a->pos;
-		else
-			a->val_a = (size_a - a->pos) * (-1);
-		if (a->target_pos <= size_b / 2)
-			a->val_b = a->target_pos;
-		else
-			a->val_b = (size_b - a->target_pos) * (-1);
-		a = a->next ;
-	}
-}
 
 static long	get_cost(long val_a, long val_b)
 {
@@ -49,6 +28,35 @@ static long	get_cost(long val_a, long val_b)
 	return (abs_a + abs_b);
 }
 
+void	set_price(t_stack *a, t_stack *b)
+{
+	int		s_a;
+	int		s_b;
+	long	c[4];
+
+	s_a = stack_len(a);
+	s_b = stack_len(b);
+	while (a)
+	{
+		c[0] = get_cost(a->pos, a->target_pos);
+		c[1] = get_cost(a->pos, a->target_pos - s_b);
+		c[2] = get_cost(a->pos - s_a, a->target_pos);
+		c[3] = get_cost(a->pos - s_a, a->target_pos - s_b);
+		a->val_a = a->pos;
+		a->val_b = a->target_pos;
+		if (c[1] < c[0] && c[1] <= c[2] && c[1] <= c[3])
+			a->val_b = a->target_pos - s_b;
+		else if (c[2] < c[0] && c[2] <= c[1] && c[2] <= c[3])
+			a->val_a = a->pos - s_a;
+		else if (c[3] < c[0] && c[3] <= c[1] && c[3] <= c[2])
+		{
+			a->val_a = a->pos - s_a;
+			a->val_b = a->target_pos - s_b;
+		}
+		a = a->next;
+	}
+}
+
 void	cheapest(t_stack *a)
 {
 	t_stack	*best_node;
@@ -64,7 +72,7 @@ void	cheapest(t_stack *a)
 	{
 		tmp->cheap = 0;
 		cost = get_cost(tmp->val_a, tmp->val_b);
-		if (cost < best_val)
+		if (cost < best_val || (cost == best_val && tmp->value > best_node->value))
 		{
 			best_val = cost;
 			best_node = tmp;

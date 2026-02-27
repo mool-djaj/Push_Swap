@@ -15,11 +15,17 @@ OBJS		= $(SRCS:.c=.o)
 
 CHECKER_NAME = checker
 
-CHECKER_SRCS = checker.c add_stack_to.c create_stack.c duplicate_num.c \
-               free_stack.c ft_atol.c push.c rotate.c reverse_rotate.c \
-               swap.c parsing.c sort.c \
-               get_next_line.c \
-               get_next_line_utils.c
+CHECKER_SRCS = checker.c \
+				add_stack_to.c \
+				create_stack.c \
+				duplicate_num.c \
+				free_stack.c \
+				ft_atol.c \
+				push.c \
+				rotate.c \
+				reverse_rotate.c \
+				swap.c parsing.c sort.c \
+				get_next_line.c get_next_line_utils.c
 
 CHECKER_OBJS = $(CHECKER_SRCS:.c=.o)
 
@@ -45,7 +51,7 @@ clean:
 	make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	$(RM) $(NAME) $(CHECKER_NAME)
+	$(RM) $(NAME) $(CHECKER_NAME) $(CHECKER_OBJS)
 	$(RM) $(LIBFT)
 	make fclean -C $(LIBFT_DIR)
 
