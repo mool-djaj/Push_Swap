@@ -67,12 +67,14 @@ void	cheapest(t_stack *a)
 	if (!a)
 		return ;
 	best_val = LONG_MAX;
+	best_node = NULL;
 	tmp = a;
 	while (tmp)
 	{
 		tmp->cheap = 0;
 		cost = get_cost(tmp->val_a, tmp->val_b);
-		if (cost < best_val || (cost == best_val && tmp->value > best_node->value))
+		if (cost < best_val || (cost == best_val
+				&& best_node && tmp->value > best_node->value))
 		{
 			best_val = cost;
 			best_node = tmp;
@@ -96,16 +98,20 @@ t_stack	*get_cheapest(t_stack *stack)
 
 void	final_check(t_stack **a)
 {
+	t_stack	*min_node;
 	int	min_pos;
+	int	min_value;
 	int	size;
 
 	set_current_pos(*a);
-	min_pos = find_min(*a)->pos;
+	min_node = find_min(*a);
+	min_pos = min_node->pos;
+	min_value = min_node->value;
 	size = stack_len(*a);
 	if (min_pos <= size / 2)
-		while ((*a)->value != find_min(*a)->value)
+		while ((*a)->value != min_value)
 			ra(a);
 	else
-		while ((*a)->value != find_min(*a)->value)
+		while ((*a)->value != min_value)
 			rra(a);
 }

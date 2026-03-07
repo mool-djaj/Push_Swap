@@ -21,7 +21,6 @@
 typedef struct s_stack
 {
 	int				value;
-	int				index;
 	int				pos;
 	int				target_pos;
 	int				val_a;

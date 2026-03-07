@@ -104,13 +104,14 @@ def test_single_case(args):
         # Check if sorted correctly
         is_sorted = True  # Default to true
         
-        if os.path.exists("./checker_Mac"):
+        # ===== UPDATED TO CHECK FOR LINUX BINARY =====
+        if os.path.exists("./checker_linux"):
             try:
                 # The key fix: ensure newline at end if instructions exist
                 checker_input = instructions + "\n" if instructions else ""
                 
                 checker = subprocess.run(
-                    ["./checker_Mac"] + args_list,
+                    ["./checker_linux"] + args_list,
                     input=checker_input,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
@@ -120,10 +121,6 @@ def test_single_case(args):
                 
                 output = checker.stdout.strip()
                 is_sorted = (output == "OK")
-                
-                # Debug: uncomment to see what checker returns
-                # if output != "OK":
-                #     print(f"\nChecker output: '{output}' for test {test_id}")
                 
             except Exception as e:
                 # If checker fails, assume not sorted
@@ -153,8 +150,9 @@ def main():
         print("❌ Error: ./push_swap not found")
         return
     
-    if not os.path.exists("./checker_Mac"):
-        print("⚠️  Warning: ./checker_Mac not found - skipping verification\n")
+    # ===== UPDATED TO CHECK FOR LINUX BINARY =====
+    if not os.path.exists("./checker_linux"):
+        print("⚠️  Warning: ./checker_linux not found - skipping verification\n")
     
     # Stats
     worst_ops = 0

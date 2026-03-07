@@ -21,6 +21,7 @@ void	set_target_b(t_stack *a, t_stack *b)
 	while (a)
 	{
 		best_match = LONG_MIN;
+		target_node = NULL;
 		current_b = b;
 		while (current_b)
 		{
@@ -48,6 +49,7 @@ void	set_target_a(t_stack *a, t_stack *b)
 	while (b)
 	{
 		best_match = LONG_MAX;
+		target_node = NULL;
 		curr_a = a;
 		while (curr_a)
 		{

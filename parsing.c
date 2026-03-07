@@ -34,7 +34,7 @@ int	fill_stack(t_stack **sta, char *arg)
 	int		j;
 
 	tmp_args = ft_split(arg, ' ');
-	if (!tmp_args || !tmp_args[0]) 
+	if (!tmp_args || !tmp_args[0])
 	{
 		free_split(tmp_args);
 		return (0);
