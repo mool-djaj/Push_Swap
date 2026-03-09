@@ -84,6 +84,5 @@ Artificial Intelligence (specifically Google's Gemini) was utilized during the d
 
 Here is a breakdown of exactly how AI was used:
 
-* **Algorithm Optimization (Math & Logic):** AI was used to help upgrade the standard Turk Algorithm to include a **4-way cost optimization**. AI provided the mathematical logic to test all four rotation combinations (`ra`+`rb`, `ra`+`rrb`, `rra`+`rb`, `rra`+`rrb`) simultaneously. This allowed the algorithm to find the absolute cheapest path by maximizing shared double-rotations (`rr` and `rrr`), dropping the average move count significantly.
-* **Code Explanation & Mentorship:** Instead of writing the core logic from scratch, AI was used to explain abstract concepts. It provided step-by-step breakdowns of how the "shopping phase" (`set_price`) and "checkout phase" (`cheapest`) work together, and clarified the difference between an element's physical position (`pos`) versus its movement instructions (`val_a` / `val_b`).
+
 * **Documentation & Formatting:** AI was used to draft, specifically formatting the Markdown for the compilation instructions and algorithm breakdown.

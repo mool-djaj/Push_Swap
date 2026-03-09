@@ -6,7 +6,7 @@
 /*   By: akaarich <akaarich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 23:03:06 by akaarich          #+#    #+#             */
-/*   Updated: 2026/02/27 01:16:12 by akaarich         ###   ########.fr       */
+/*   Updated: 2026/03/09 22:43:42 by akaarich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ t_stack	*get_cheapest(t_stack *stack)
 void	final_check(t_stack **a)
 {
 	t_stack	*min_node;
-	int	min_pos;
-	int	min_value;
-	int	size;
+	int		min_pos;
+	int		min_value;
+	int		size;
 
 	set_current_pos(*a);
 	min_node = find_min(*a);
